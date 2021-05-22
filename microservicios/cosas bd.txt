@@ -1,0 +1,13 @@
+Categorias
+tablas de myshop
+catalog_categori
+    id,name,slug
+catalog_product
+    id,name,slug,image,description,price,stock,avaliable, created, updated,category_id
+
+
+API-ORDNES
+orders_order
+    id,first_name,last_name,email,addres,postal_code,city,created,updated,paid
+orders_orderitem
+    id,price,quantity,order_id,product_id

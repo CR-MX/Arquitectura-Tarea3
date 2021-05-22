@@ -1,0 +1,21 @@
+contruccion y ejecusion
+venv\Scripts\activate
+
+docker build -t api-catalogos:1.0 .
+docker run -d --name api-catalogos --network tyk --ip 172.15.0.4 api-catalogos:1.0
+python manage.py runserver 0.0.0.0:8000 
+
+docker build -t api-carritos:1.0 .
+docker run -d --name api-carritos --network tyk --ip 172.15.0.5 api-carritos:1.0
+python manage.py runserver 0.0.0.0:8000 
+
+docker build -t api-ordenes:1.0 .
+docker run -d --name api-ordenes --network tyk --ip 172.15.0.6 api-ordenes:1.0
+python manage.py runserver 0.0.0.0:8000 
+
+gui
+docker build -t gui:1.0 .
+docker run -d --name gui -p 5000:5000 gui:1.0
+python gui.py
+
+docker run -d --name tyk_gateway --network tyk --ip 172.15.0.3 -p 8080:8080 -v "D:/Desarrollo/Tarea3/microservicios/ejemplo_microservicios/tyk-gateway/tyk.standalone.conf:/opt/tyk-gateway/tyk.conf" -v "D:/Desarrollo/Tarea3/microservicios/ejemplo_microservicios/tyk-gateway/apps:/opt/tyk-gateway/apps" tykio/tyk-gateway:v3.1.2

@@ -1,0 +1,21 @@
+catalogos
+{
+    "key": "9d7472dca0314fd4832d580cdb9cb8fe",
+    "status": "ok",
+    "action": "added",
+    "key_hash": "1049bbe3"
+}
+Carritos
+{
+    "key": "8090dc63ee4f43788df1570acdfbae15",
+    "status": "ok",
+    "action": "added",
+    "key_hash": "768f3ac8"
+}
+Ordenes
+{
+    "key": "b1b7caeef28c43dcb80f828fdc1dfca1",
+    "status": "ok",
+    "action": "added",
+    "key_hash": "f7710d6b"
+}

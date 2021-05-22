@@ -21,24 +21,32 @@
 
                 <div class="column">
                     <h2 class="subtitle">Microservice 1</h2>
-                    <h2 class="subtitle">Python</h2>
+                    <h2 class="subtitle">Django Catalogo</h2>
                     <a href="/1" id="ms1-button" class="button">Call</a>
 
                     <br><br>
-                    {% if result['ms1'] %}<h4>{{ result['ms1']['Message'] }}</h4>{% endif %}
+                    {% if result['ms1'] %}
+                        {% for message in result['ms1'] %}
+                            <h4>{{ message.text }}</h4>
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="column">
                     <h2 class="subtitle">Microservice 2</h2>
-                    <h2 class="subtitle">Dart</h2>
+                    <h2 class="subtitle">Django Carro</h2>
                     <a href="/2" id="ms2-button" class="button">Call</a>
                     <br><br>
-                    {% if result['ms2'] %}<h4>{{ result['ms2']['Message'] }}</h4>{% endif %}
+                    {% if result['ms2'] %}
+                        {% for message in result['ms2'] %}
+                            <h4>{{ message.text }}</h4>
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="column">
                     <h2 class="subtitle">Microservice 3</h2>
-                    <h2 class="subtitle">Django</h2>
+                    <h2 class="subtitle">Django orden</h2>
                     <a href="/3" id="ms3-button" class="button">Call</a>
                     <br><br>
                     {% if result['ms3'] %}

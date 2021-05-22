@@ -30,13 +30,13 @@ CORS(app)
 
 # Se definen las llaves de cada microservicio
 
-key_m1 = "9d7472dca0314fd4832d580cdb9cb8fe"
+key_m1 = "1d5536b672a6463a8e3d557d46048201"
 headers_m1 = {"authorization": key_m1}
 
-key_m2 = "8090dc63ee4f43788df1570acdfbae15"
+key_m2 = "f17165d675704c859049172d5c763531"
 header_m2 = {"authorization": key_m2}
 
-key_m3 = "b1b7caeef28c43dcb80f828fdc1dfca1"
+key_m3 = "a6c010146d224e059f26e30865d117b7"
 header_m3 = {"authorization": key_m3}
 
 
@@ -45,11 +45,11 @@ header_m3 = {"authorization": key_m3}
 # con los microservicios dentro de los contenedores de Docker.
 
 # Url para el microservicio 1
-url_microservice1 = 'http://127.0.0.1:8080/catalogos/catalogo'
+url_microservice1 = 'http://host.docker.internal:8080/catalogos/catalogo'
 # Url para el microservicio 2
-url_microservice2 = 'http://127.0.0.1:8080/carritos/carrito'
+url_microservice2 = 'http://host.docker.internal:8080/carritos/carrito'
 # Url para el microservicio 3
-url_microservice3 = 'http://127.0.0.1:8080/ordenes/orden'
+url_microservice3 = 'http://host.docker.internal:8080/ordenes/orden'
 
 
 # Método que muestra la página de inicio del sistema

@@ -24,9 +24,14 @@
 #-------------------------------------------------------------------------
 
 from rest_framework import serializers
-from .models import Message
+from .models import Category,Product
 
-class MessageSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Message
+        model = Category
+        fields = '__all__'
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
         fields = '__all__'

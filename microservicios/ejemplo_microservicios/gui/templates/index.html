@@ -25,9 +25,15 @@
                     <a href="/1" id="ms1-button" class="button">Call</a>
 
                     <br><br>
-                    {% if result['ms1'] %}
-                        {% for message in result['ms1'] %}
-                            <h4>{{ message.text }}</h4>
+                    {% if result['id'] %}
+                        {% for message in result['id'] %}
+                            <h4>{{ message.name }}</h4>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if result['image'] %}
+                        {% for message in result['image'] %}
+                            <h4>{{ message.name }}</h4>
                         {% endfor %}
                     {% endif %}
                 </div>

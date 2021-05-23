@@ -74,13 +74,24 @@ WSGI_APPLICATION = 'microservice1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#dirección de la base de datos
+# current='D:/Desarrollo/Tarea3/Arquitectura-Tarea3/microservicios/ejemplo_microservicios'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': current +  '/db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bhyrqcawpsrtxflpcgjr',
+        'USER':'ufgxxyrdc7kc1dqq',
+        'PASSWORD':'zKG4xq8BEh31eyNVFzi4',
+        'HOST':'bhyrqcawpsrtxflpcgjr-mysql.services.clever-cloud.com',
+        'PORT':'3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

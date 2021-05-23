@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li {% if not category %}class="selected"{% endif %}>
+                
+            </li>
+        {% for c in categories %}
+
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div id="main" class="product-list">
+        
+        {% for product in products %}
+            <div class="item">
+                <div>
+        
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

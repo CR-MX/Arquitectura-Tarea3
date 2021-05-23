@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+    <h1>Your shopping cart</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit price</th>                
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                        <img src= "static/media/img/no_image.png">
+                    </a>
+                </td>
+                <td>
+
+                    </form>
+                </td>
+                <td><a href="">Remove</a></td>
+
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{{url_for('plist')}}" class="button light">Continue shopping</a>
+        <a href="{{url_for('create')}}" class="button">Checkout</a>
+    </p>
+{% endblock %}

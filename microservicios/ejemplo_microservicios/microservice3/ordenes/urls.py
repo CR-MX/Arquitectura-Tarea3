@@ -14,17 +14,27 @@
 
 from django.urls import path
 
-from .views import MessageViewSet
+from .views import OrderViewSet,OrderItemViewSet
 
 urlpatterns = [
-    path('orden', MessageViewSet.as_view({
+    path('orden', OrderViewSet.as_view({
         'get': 'list',
         'post': 'create'
     })),
-    path('orden/<str:pk>', MessageViewSet.as_view({
+    path('orden/<str:pk>', OrderViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    path('ordenitem', OrderItemViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('ordenitem/<str:pk>', OrderItemViewSet.as_view({
         'get': 'retrieve',
         'put': 'update',
         'delete': 'destroy'
     }))
+
 
 ]

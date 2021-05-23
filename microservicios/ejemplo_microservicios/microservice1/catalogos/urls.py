@@ -14,14 +14,23 @@
 
 from django.urls import path
 
-from .views import MessageViewSet
+from .views import CategoryViewSet,ProductViewSet
 
 urlpatterns = [
-    path('catalogo', MessageViewSet.as_view({
+    path('category', CategoryViewSet.as_view({
         'get': 'list',
         'post': 'create'
     })),
-    path('catalogo/<str:pk>', MessageViewSet.as_view({
+    path('category/<str:pk>', CategoryViewSet.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    path('product', ProductViewSet.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('product/<str:pk>', ProductViewSet.as_view({
         'get': 'retrieve',
         'put': 'update',
         'delete': 'destroy'

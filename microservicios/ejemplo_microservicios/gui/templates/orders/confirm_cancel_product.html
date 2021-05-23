@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Cancel order
+{% endblock %}
+
+{% block content %}
+    <h1>Cancel Product  </h1>
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+  <hr>
+  <br>
+  <table class="table">
+    <thead>
+      <th>Products</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+       
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+  <form  method="post" class="order-form">
+    <p><input type="submit" value="Confirm" ></p>
+    <p><input type="hidden" name="Num_orden" value="{{order_id}}"></p>
+  
+  </form>
+</div>
+{% endblock %}

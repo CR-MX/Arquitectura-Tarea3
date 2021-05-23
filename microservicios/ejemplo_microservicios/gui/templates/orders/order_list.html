@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block content %}
+<h1 class="app-page-title">Orders</h1>
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+  <hr>
+  <br>
+  <table class="table">
+    
+    <thead>
+      <th>Orders</th>
+      <th>Last name</th>
+      <th>Name</th>
+      <th>Acciones</th>
+    </thead>
+    
+    <tbody>
+      
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <a  href="" >Actualizar</a>  
+          <a  href="{{url_for('orderitemlist')}}" >Cancelar</a>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+{% endblock %}

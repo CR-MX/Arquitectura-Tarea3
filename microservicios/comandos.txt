@@ -1,3 +1,12 @@
+comandos de inicio
+docker pull redis:6
+docker pull tykio/tyk-gateway:v3.1.2
+docker network create --subnet=172.15.0.0/16 --attachable tyk
+docker run -d --name tyk_redis --network tyk --ip 172.15.0.2 redis:6
+
+docker run -d --name tyk_gateway --network tyk --ip 172.15.0.3 -p 8080:8080 -v "D:/Desarrollo/Tarea3/Arquitectura-Tarea3/microservicios/ejemplo_microservicios/tyk-gateway/tyk.standalone.conf:/opt/tyk-gateway/tyk.conf" -v "D:/Desarrollo/Tarea3/Arquitectura-Tarea3/microservicios/ejemplo_microservicios/tyk-gateway/apps:/opt/tyk-gateway/apps" tykio/tyk-gateway:v3.1.2
+
+
 contruccion y ejecusion
 venv\Scripts\activate
 

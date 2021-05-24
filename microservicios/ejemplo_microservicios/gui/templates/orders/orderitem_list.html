@@ -16,10 +16,18 @@
     </thead>
     <tbody>
       
+      <feldset id="grou1">
+      {% for i in orderi %}
       <tr>
-        <td></td>
-        <td></td>
+        <td>{{i.product}}</td>
+        <td>{{i.quantity}}</td>
+        <td>{{i.price}}</td>
+        <td>
+             <a  href="{{url_for('orderitemlist')}}">Cancelar</a>
+        </td>
       </tr>
+      {% endfor %}
+    </feldset>
       
     </tbody>
   </table>

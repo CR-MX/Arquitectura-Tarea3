@@ -9,6 +9,7 @@ docker run -d --name tyk_gateway --network tyk --ip 172.15.0.3 -p 8080:8080 -v "
 
 contruccion y ejecusion
 venv\Scripts\activate
+env\Scripts\activate
 
 docker build -t api-catalogos:1.0 .
 docker run -d --name api-catalogos --network tyk --ip 172.15.0.4 api-catalogos:1.0

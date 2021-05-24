@@ -1,21 +1,14 @@
-catalogos->
-{
-    "key": "aa086d188cd3463d8c6292bb6512f75e",
-    "status": "ok",
-    "action": "added",
-    "key_hash": "48756b5c"
-}
-Carritos
-{
-    "key": "e10d7040f42c4b3298140220af83205b",
-    "status": "ok",
-    "action": "added",
-    "key_hash": "6fd09547"
-}
-Ordenes
-{
-    "key": "a6c010146d224e059f26e30865d117b7",
-    "status": "ok",
-    "action": "added",
-    "key_hash": "136722fd"
-}
+# Catalogos -> Category //
+key_m1 = "7802864422a64577880e519dc003c51c"
+
+# Catalogos -> product //
+key_m4 = "9c97fc13aacf49a7b187bc7b88abc88c"
+
+# Carritos -> carrito
+key_m2 = "1279c487851b4a6facec1a8099c30d05"
+
+# Ordenes -> orden
+key_m3 = "a53605cc91f542f7a159908580e4caf0"
+
+# Ordenes -> ordenitem
+key_m5 = "0bf6749ffa034ba68aba77f68214f523"

@@ -19,17 +19,17 @@
     </thead>
     
     <tbody>
-      
-      
+        {% for i in result['order'] %}
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{i.id}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.first_name}}</td>
         <td>
-          <a href="{{url_for('deleteorders')}}">Cancelar</a>
+          <a  href="{{url_for('orderitemlist')}}/{{i.id}}" >Actualizar<a/>  
+          <a href="{{url_for('confirmcancel') }}">Cancelar</a>
         </td>
       </tr>
-      
+      {% endfor %}
     </tbody>
   </table>
 </div>

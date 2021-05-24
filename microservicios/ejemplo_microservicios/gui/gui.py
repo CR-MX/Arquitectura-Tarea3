@@ -30,19 +30,19 @@ CORS(app)
 
 # Se definen las llaves de cada microservicio
 # Catalogos -> Category
-key_m1 = "28bd3fe480ca4270a066f5221f572975"
-headers_m1 = {"authorization": key_m1}
+key_m1 = "7802864422a64577880e519dc003c51c"
+header_m1 = {"authorization": key_m1}
 # Catalogos -> product
-key_m4 = "4113ec56cbcd4e1ab5f86dcaaa500841"
-headers_m4 = {"authorization": key_m4}
+key_m4 = "9c97fc13aacf49a7b187bc7b88abc88c"
+header_m4 = {"authorization": key_m4}
 # Carritos -> carrito
-key_m2 = "f76b6854e37c49699ce7bbae8ca63b39"
+key_m2 = "1279c487851b4a6facec1a8099c30d05"
 header_m2 = {"authorization": key_m2}
 # Ordenes -> orden
-key_m3 = "66ecc7405fbe4f39acebfe341fe3e55b"
+key_m3 = "a53605cc91f542f7a159908580e4caf0"
 header_m3 = {"authorization": key_m3}
 # Ordenes -> ordenitem
-key_m5 = "66ecc7405fbe4f39acebfe341fe3e55b"
+key_m5 = "0bf6749ffa034ba68aba77f68214f523"
 header_m5 = {"authorization": key_m5}
 
 
@@ -73,48 +73,51 @@ orders_orderitem
     id,price,quantity,order_id,product_id
 '''
 
-
-# Método que muestra la página de inicio del sistema
-@app.route("/", defaults={'api': None}, methods=['GET'])
-@app.route("/<api>", methods=['GET'])
-def index(api):
-
-    # Se verifica si se recibió la variable api
-    if api:
-
-        if int(api) == 1:
-            # Se llama al microservicio enviando como parámetro la url y el header
-            ms1 = requests.get(url_microservice1, headers=headers_m1)
-            # Se convierte la respuesta a json
-            json = ms1.json()
-            # Se llama al microservicio enviando como parámetro la url y el header
-            ms1 = requests.get(url_microservice4, headers=headers_m4)
-            # Se convierte la respuesta a json
-            json += ms1.json()
-            # Se crea el json que será enviado al template
-            json_result = {'id': json, 'image':json}
-
-        elif int(api) == 2:
-            # Se llama al microservicio enviando como parámetro la url y el header
-            ms2 = requests.get(url_microservice2, headers=header_m2)
-            # Se convierte la respuesta a json
-            json = ms2.json()
-            # Se crea el json que será enviado al template
-            json_result = {'ms2': json}
-        elif int(api) == 3:
-            # Se llama al microservicio enviando como parámetro la url y el header 
-            ms3 = requests.get(url_microservice3, headers=header_m3)
-            # Se convierte la respuesta a json
-            json = ms3.json()
-            # Se crea el json que será enviado al template
-            json_result = {'ms3': json}
-        
-        return render_template("index.html", result=json_result)
+# pagina principal con categorias e items
+@app.route("/products/list")
+def plist():
+    # Categoria
+    categoria = requests.get(url_microservice1, headers=header_m1)
+    # Se convierte la respuesta a json
+    json1 = categoria.json()
+    # Product
+    producto = requests.get(url_microservice4, headers=header_m4)
+    # Se convierte la respuesta a json
+    json2 = producto.json()
+    # Se crea el json que será enviado al template
     
-    # Si no se recibe, simplemente se regresa el template index.html sin datos.
-    else:
-        json_result = {}
-        return render_template("index.html", result=json_result)
+    return render_template("products/list.html",result={'categoria': json1,'producto':json2})
+
+# redireccion de inicio
+@app.route("/", methods=['GET'])
+def index():
+    #Redirecciona a products/list.html
+    return plist()
+
+# Lista de productos
+@app.route("/order/list")
+def olist():
+    # order
+    order = requests.get(url_microservice3, headers=header_m3)
+    # Se convierte la respuesta a json
+    json3 = order.json()
+    return render_template("order/list.html",result={'order': json3})
+
+# Eliminar uno por uno
+@app.route("/orders/orderitemlist")
+@app.route("/orders/orderitemlist/<int:id>", methods=['GET'])
+
+def orderitemlist(id):
+    # order
+    order = requests.get(url_microservice3, headers=header_m3)
+    # Se convierte la respuesta a json
+    # orderitem
+    orderitem = requests.get(url_microservice5, headers=header_m5)
+
+    # Se convierte la respuesta a json
+    json4 = orderitem.json()
+    return render_template("orders/order_list.html",id=id , result={'orderitem':json4})
+
 # otras cosas
 @app.route("/cart/detail")
 def cdetail():
@@ -128,29 +131,22 @@ def create():
 def created():
     return render_template("order/created.html")
 
-@app.route("/order/list")
-def olist():
-    return render_template("order/list.html")
 
-@app.route("/orders/orderitemlist")
-def orderitemlist():
-    return render_template("orders/orderitem_list.html")
+
+
 
 @app.route("/orders/orderlist")
 def orderlist():
     return render_template("orders/order_list.html")
 
 @app.route("/orders/delete")
-def deleteorders():
+def deleteorders():#borra uno
     return render_template("orders/delete.html")
 
 @app.route("/orders/confirmcancel")
-def confirmcancel():
+def confirmcancel():#borratodo
     return render_template("orders/confirm_cancel_product.html")
 
-@app.route("/products/list")
-def plist():
-    return render_template("products/list.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

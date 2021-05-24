@@ -29,7 +29,7 @@
         <div id="subheader">
             <div style="float:left; margin:0px;">
                 <!-- Redireccionamiento ya funciona -->
-                <a href="{{url_for('')}}"><h2>My shop</h2></a> 
+                <a href="{{url_for('index')}}"><h2>My shop</h2></a> 
             </div>
 
             <div class="cart" style="float:right; margin-right:10px; margin-top: 20px;">
@@ -50,7 +50,7 @@
             </div>
 
             <div class="cart" style="float:right; margin-right:30px; margin-top: 20px;">
-                <a href="(% url "../home" %)"> Cancel Order</a>
+                <a href="{{url_for('olist')}}"> Cancel Order</a>
             </div>
         </div>
 </section>

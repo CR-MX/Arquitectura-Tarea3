@@ -1,0 +1,130 @@
+-->Comandos para windows 10 
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios
+
+docker pull redis:6
+docker pull tykio/tyk-gateway:v3.1.2
+docker network create --subnet=172.15.0.0/16 --attachable tyk
+docker run -d --name tyk_redis --network tyk --ip 172.15.0.2 redis:6
+
+-->sustituir la cadena '$(pwd)' por el path del directorio actual ejemplo "D:/Desarrollo/Tarea3/Arquitectura-Tarea/microservicios"
+
+docker run -d --name tyk_gateway --network tyk --ip 172.15.0.3 -p 8080:8080 -v "$(pwd)/ejemplo_microservicios/tyk-gateway/tyk.standalone.conf:/opt/tyk-gateway/tyk.conf" -v "$(pwd)/ejemplo_microservicios/tyk-gateway/apps:/opt/tyk-gateway/apps" tykio/tyk-gateway:v3.1.2
+
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios
+-->crear entorno virtual
+
+python3 -m venv venv
+venv\Scripts\activate
+
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios\microservice1
+
+pip3 install -r requirements.txt 
+
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios\microservice1
+
+docker build -t api-catalogos:1.0 .
+docker run -d --name api-catalogos --network tyk --ip 172.15.0.4 api-catalogos:1.0
+
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios\microservice2
+
+docker build -t api-carritos:1.0 .
+docker run -d --name api-carritos --network tyk --ip 172.15.0.5 api-carritos:1.0
+
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios\microservice3
+
+docker build -t api-ordenes:1.0 .
+docker run -d --name api-ordenes --network tyk --ip 172.15.0.6 api-ordenes:1.0
+
+-->Crear las llaves con los headers del tutorial, en postman con los siguientes bodys
+{
+    "rate": 1000,
+    "per": 1,
+    "expires": 0,
+    "quota_max": -1,
+    "quota_renews": 1458667309,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "2": {
+            "api_id": "2",
+            "api_name": "Catalogos Category API"
+        }
+    }
+}
+
+{
+    "rate": 1000,
+    "per": 1,
+    "expires": 0,
+    "quota_max": -1,
+    "quota_renews": 1458667309,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "5": {
+            "api_id": "5",
+            "api_name": "Catalogos Product API"
+        }
+    }
+}
+
+{
+    "rate": 1000,
+    "per": 1,
+    "expires": 0,
+    "quota_max": -1,
+    "quota_renews": 1458667309,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "3": {
+            "api_id": "3",
+            "api_name": "Carritos API"
+        }
+    }
+}
+
+{
+    "rate": 1000,
+    "per": 1,
+    "expires": 0,
+    "quota_max": -1,
+    "quota_renews": 1458667309,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "4": {
+            "api_id": "4",
+            "api_name": "Ordenes Orden API"
+        }
+    }
+}
+
+{
+    "rate": 1000,
+    "per": 1,
+    "expires": 0,
+    "quota_max": -1,
+    "quota_renews": 1458667309,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "6": {
+            "api_id": "6",
+            "api_name": "Ordenes Ordenitem API"
+        }
+    }
+}
+-->Nivel de carpeta: (ruta de git clone)\Arquitectura-Tarea3\microservicios\ejemplo_microservicios\gui
+
+docker build -t gui:1.0 .
+docker run -d --name gui -p 5000:5000 gui:1.0
+
+--> ingresar http://localhost:5000/
+
+
+
+
+
+
+
